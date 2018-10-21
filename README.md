@@ -26,7 +26,7 @@ $weather = new Weather($key);
 
 ### 获取实时天气
 ```php
-$response = $weather->getWeather('广州');
+$response = $weather->getLiveWeather('广州');
 ```
 
 示例:
@@ -55,7 +55,7 @@ $response = $weather->getWeather('广州');
 ### 获取近期天气预报
 
 ```php
-$response = $weather->getWeather('广州', 'all');
+$response = $weather->getForecastsWeather('广州');
 ```
 示例:
 
@@ -130,7 +130,7 @@ $response = $weather->getWeather('广州', 'all');
    第三个参数为返回值类型，可选 json 与 xml，默认 json：
 
 ```php
-$response = $weather->getWeather('广州', 'all', 'xml');
+$response = $weather->getLiveWeather('广州', 'xml');
 ```
 
 示例:

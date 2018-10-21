@@ -23,18 +23,18 @@ class Weather
         $this->key = $key;
     }
 
-    public function getHttpClient()
+    public function getLiveWeather($city, $format = 'json')
     {
-        return new Client($this->guzzleOptions);
+        return $this->getWeather($city, 'base', $format);
     }
 
-    public function setGuzzleOptions(array $options)
+    public function getForecastsWeather($city, $format = 'json')
     {
-        return $this->guzzleOptions = $options;
+        return $this->getWeather($city, 'all', $format);
     }
 
 
-    public function getWeather($city, string $type = 'base', string $format = 'json')
+    public function getWeather($city, $type = 'base', $format = 'json')
     {
         $url = 'https://restapi.amap.com/v3/weather/weatherInfo';
 
@@ -53,14 +53,26 @@ class Weather
             'output' => $format
         ]);
 
-       try{
-           $response = $this->getHttpClient()->get($url, [
-               'query' => $query
-           ])->getBody()->getContents();
-       }catch (\Exception $e){
-           throw new HttpException($e->getMessage(),$e->getCode(),$e);
-       }
+        try {
+            $response = $this->getHttpClient()->get($url, [
+                'query' => $query
+            ])->getBody()->getContents();
+        } catch (\Exception $e) {
+            throw new HttpException($e->getMessage(), $e->getCode(), $e);
+        }
 
         return 'json' === $format ? json_decode($response, true) : $response;
     }
+
+
+    public function getHttpClient()
+    {
+        return new Client($this->guzzleOptions);
+    }
+
+    public function setGuzzleOptions(array $options)
+    {
+        return $this->guzzleOptions = $options;
+    }
+
 }
