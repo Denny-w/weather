@@ -4,6 +4,9 @@
 
 [![Build Status](https://travis-ci.org/Denny-w/weather.svg?branch=master)](https://travis-ci.org/Denny-w/weather)
 
+
+![StyleCI build status](https://github.styleci.io/repos/25193846/shield) 
+
 ## 安装
 
 ```shell
