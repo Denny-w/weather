@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: Clown
  * Date: 18/10/21
- * Time: 14:30
+ * Time: 14:30.
  */
 
 namespace ErnestWang\Weather\Tests;
@@ -19,7 +19,6 @@ use PHPUnit\Framework\TestCase;
 
 class WeatherTest extends TestCase
 {
-
     public function testGetLiveWeather()
     {
         // 将 getWeather 接口模拟为返回固定内容，以测试参数传递是否正确
@@ -39,7 +38,6 @@ class WeatherTest extends TestCase
         // 断言正确传参并返回
         $this->assertSame(['success' => true], $w->getForecastsWeather('深圳'));
     }
-
 
     public function testGetHttpClient()
     {
@@ -77,7 +75,7 @@ class WeatherTest extends TestCase
                 'city' => '深圳',
                 'output' => 'json',
                 'extensions' => 'base',
-            ]
+            ],
         ])->andReturn($response);
 
         $w = \Mockery::mock(Weather::class, ['mock-key'])->makePartial();
@@ -100,7 +98,6 @@ class WeatherTest extends TestCase
         $w->allows()->getHttpClient()->andReturn($client);
 
         $this->assertSame('<hello>content</hello>', $w->getWeather('深圳', 'all', 'xml'));
-
     }
 
     public function testGetWeatherWithGuzzleRuntimeException()
@@ -119,7 +116,6 @@ class WeatherTest extends TestCase
         $this->expectExceptionMessage('request timeout');
 
         $w->getWeather('深圳');
-
     }
 
     public function testGetWeatherWithInvalidType()
@@ -133,7 +129,6 @@ class WeatherTest extends TestCase
         $w->getWeather('广州', 'foo');
 
         $this->fail('Faild to assert getWeather throw exception with invalid argument.');
-
     }
 
     public function testGetWeatherWithInvalidFormat()
