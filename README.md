@@ -6,7 +6,7 @@
 ## 安装
 
 ```shell
-$ composer require ernestwang//weather -vvv
+$ composer require denny-w/weather -vvv
 ```
 
 ## 配置
